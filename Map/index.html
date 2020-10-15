@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quick Start - Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <div id="mapid" style="width: 600px; height: 400px;"></div>
+    <script>
+        function success(data) {
+            var crd = data.coords;
+            drawingMap(crd.latitude, crd.longitude);
+        }
+        function error(data) {
+            drawingMap();
+        }
+        function drawingMap(latitude = 0, longitude = 0) {
+            var mymap = L.map('mapid').setView([18.4796804, -69.9075864], 13);
+
+            if (latitude != 0 && longitude != 0) {
+                var meIcon = L.icon({
+                    iconUrl: 'https://intefarc.com/wp-content/uploads/2020/07/5555954441582960203-512.png',
+                    iconSize: [40, 40]
+                })
+                L.marker([latitude, longitude], { icon: meIcon }).bindPopup("Estas Aquí").addTo(mymap);
+            }
+
+            L.marker([18.4706317, -69.9143432]).bindPopup("Farmacia Carol, Máximo Gomez, Av. Máximo Gómez 34, Santo Domingo").addTo(mymap);
+            L.marker([18.4724205, -69.9358615]).bindPopup("Farmacia Carol, Av. Winston Churchill Esq. Av. Gustavo Mejia Ricart").addTo(mymap);
+            L.marker([18.4695276, -69.9043115]).bindPopup("Farmacia Carol, Av. Bolivar No. 251, Santo Domingo").addTo(mymap);
+            L.marker([18.4554937, -69.9460114]).bindPopup("Farmacia Carol, Avenida Rómulo Betancourt #341 (Calle Bohechio)").addTo(mymap);
+            L.marker([19.4679744, -70.6890244]).bindPopup("Farmacia Carol, Ave. Estrella Sahdala # 29, Santiago").addTo(mymap);
+            L.marker([18.4687539, -69.8963982]).bindPopup("Farmacia Carol, Av. Independencia esq. Calle Dr. Delgado del Edificio Buena Ventura, Gazcue").addTo(mymap);
+            L.marker([19.481301, -70.705598]).bindPopup("Farmacia Medicar GBC, Ave. Estrella Sadhalá No.39, Los Ciruelitos, Santiago").addTo(mymap);
+            L.marker([18.457214, -69.920979]).bindPopup("Farmacia Medicar GBC, Av. Dr. Bernardo Correa y Cidrón, No.9, Plaza Comercial Confortex, Santo Domingo").addTo(mymap);
+            L.marker([18.449271, -69.957071]).bindPopup("Farmacia Medicar GBC, Av. Rómulo Betancourt ,No. 1800, Esq. Paseo de los Profesores, Plaza Cristal Marie, Mirador Sur, Santo Domingo").addTo(mymap);
+            L.marker([18.468568, -69.902294]).bindPopup("Farmacia Medicar GBC, Calle Josefa Perdomo No. 169 Esq. Jose J. Pérez, Gazcue, Santo Domingo").addTo(mymap);
+            L.marker([18.489632, -69.865421]).bindPopup("Farmacia Medicar GBC, Av. Sabana Larga, No. 7, casi esquina Las Américas, Ensanche Ozama, Santo Domingo").addTo(mymap);
+            L.marker([18.527733, -69.911801]).bindPopup("Farmacia Medicar GBC, Av. Hermanas Mirabal No. 343, Santa Cruz., Santo Domingo").addTo(mymap);
+            L.marker([18.491483, -69.921362]).bindPopup("Farmacia Medicar GBC, C/ Arturo Logroño #155 esq. Ortega y Gasset, Santo Domingo").addTo(mymap);
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(mymap);
+        }
+        navigator.geolocation.getCurrentPosition(success, error);
+    </script>
+</body>
+
+</html>
